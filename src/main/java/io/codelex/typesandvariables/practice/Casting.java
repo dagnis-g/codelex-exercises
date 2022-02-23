@@ -14,8 +14,8 @@ public class Casting {
         float e = 5;
 
         //fixme - should be 15 :| 
-        //int sum = a + b + c + d + e;
-        //System.out.println(sum);
+        int sum = (int) (Integer.parseInt(a) + b + c + d + e);
+        System.out.println(sum);
     }
 
     private static void second() {
@@ -26,7 +26,7 @@ public class Casting {
         float e = 5.3f;
 
         //fixme - should be 15.5 :| 
-        //float sum = a + b + c + d + e;
-        //System.out.println(sum);
+        float sum = (float) (Integer.parseInt(a) + b + c + d + e);
+        System.out.println(sum);
     }
 }
