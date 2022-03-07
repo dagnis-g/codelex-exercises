@@ -7,7 +7,7 @@ public class Exercise_6 {
         fizzBuzz();
     }
 
-    public static void fizzBuzz() {
+    private static void fizzBuzz() {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Enter a number:");
