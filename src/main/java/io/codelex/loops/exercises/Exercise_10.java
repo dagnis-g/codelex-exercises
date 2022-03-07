@@ -7,7 +7,7 @@ public class Exercise_10 {
         numberSquare();
     }
 
-    public static void numberSquare() {
+    private static void numberSquare() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter Min number: ");
         int min = scan.nextInt();

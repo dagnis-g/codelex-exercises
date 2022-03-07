@@ -5,7 +5,7 @@ public class Exercise_8 {
         asciiFigure(7);
     }
 
-    public static void asciiFigure(int size) {
+    private static void asciiFigure(int size) {
 
         String leftSide = "////";
         String rightSide = "\\\\\\\\";

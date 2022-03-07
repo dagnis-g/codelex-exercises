@@ -19,7 +19,9 @@ public class Exercise_9 {
             int diceTwo = random.nextInt(6) + 1;
             int diceSum = diceOne + diceTwo;
             System.out.println(diceOne + " and " + diceTwo + " = " + diceSum);
-            if (diceSum == desiredSum) break;
+            if (diceSum == desiredSum) {
+                break;
+            }
         }
     }
 }

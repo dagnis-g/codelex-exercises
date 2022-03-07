@@ -8,7 +8,7 @@ public class Exercise_7 {
         piglet();
     }
 
-    public static void piglet() {
+    private static void piglet() {
         System.out.println("Welcome to Piglet!");
 
         Scanner scan = new Scanner(System.in);
@@ -34,9 +34,6 @@ public class Exercise_7 {
                 System.out.println("You quit with " + result + " points");
                 break;
             }
-
-
         }
-
     }
 }
