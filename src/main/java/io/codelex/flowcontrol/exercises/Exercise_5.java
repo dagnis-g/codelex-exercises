@@ -7,7 +7,7 @@ public class Exercise_5 {
         phoneKeyPad();
     }
 
-    public static void phoneKeyPad() {
+    private static void phoneKeyPad() {
         Scanner scan = new Scanner(System.in);
         String message = scan.nextLine().toLowerCase();
 

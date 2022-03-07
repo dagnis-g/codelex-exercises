@@ -7,7 +7,7 @@ public class Exercise_4 {
         printDayInWord();
     }
 
-    public static void printDayInWord() {
+    private static void printDayInWord() {
         Scanner scan = new Scanner(System.in);
 
         int day = scan.nextInt();
