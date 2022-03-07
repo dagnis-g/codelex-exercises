@@ -7,7 +7,7 @@ public class Exercise_7 {
         ticTacToe();
     }
 
-    public static void ticTacToe() {
+    private static void ticTacToe() {
         Scanner scan = new Scanner(System.in);
         char[][] gameBoardArray = new char[3][3];
         for (int i = 0; i < 3; i++) {
@@ -66,7 +66,6 @@ public class Exercise_7 {
                 break;
             }
 
-
             gameBoardString = printBoard(gameBoardArray);
             isFirstPlayer = !isFirstPlayer;
             System.out.println(gameBoardString);
@@ -75,12 +74,9 @@ public class Exercise_7 {
         if (!gameBoardString.contains(String.valueOf('-')) && !isWinner) {
             System.out.println("The game has ended in tie");
         }
-
-
     }
 
-
-    public static String printBoard(char[][] gameBoard) {
+    private static String printBoard(char[][] gameBoard) {
         StringBuilder gameBoardString = new StringBuilder();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {

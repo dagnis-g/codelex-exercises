@@ -14,7 +14,6 @@ public class Exercise4 {
                 1456, 2265, 1457, 2456,
         };
 
-
         // fixme - check if contains number 1245
         int num = 1245;
         if (Arrays.stream(myArray).anyMatch(i -> i == num)) {
