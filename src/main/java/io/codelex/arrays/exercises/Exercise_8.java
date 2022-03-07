@@ -7,7 +7,7 @@ public class Exercise_8 {
         hangman();
     }
 
-    public static void hangman() {
+    private static void hangman() {
         Scanner scan = new Scanner(System.in);
         String[] wordsToChooseFrom = {"write", "program", "game", "letter", "display", "random"};
         Random random = new Random();
@@ -20,7 +20,6 @@ public class Exercise_8 {
 
         for (int i = 0; i < chosenWord.length * 2; i++) {
             System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-
 
             for (String item : wordWhileGuess) {
                 System.out.print(item + " ");
@@ -61,7 +60,5 @@ public class Exercise_8 {
             }
         }
         System.out.println("You hang");
-
-
     }
 }

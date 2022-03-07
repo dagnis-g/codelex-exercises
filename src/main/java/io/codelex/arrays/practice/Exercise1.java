@@ -36,7 +36,6 @@ public class Exercise1 {
         }
         System.out.println();
 
-
         System.out.print("Original string array : ");
         for (String i : myArray2) {
             System.out.print(i + " ");

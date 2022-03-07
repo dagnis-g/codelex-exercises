@@ -25,7 +25,6 @@ public class Exercise2 {
         }
         int sum = myArray.stream().mapToInt(i->i).sum();
 
-
         System.out.println("The sum is " + sum);
     }
 }

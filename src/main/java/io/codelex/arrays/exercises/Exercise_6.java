@@ -9,7 +9,7 @@ public class Exercise_6 {
         arrayOfTen();
     }
 
-    public static void arrayOfTen() {
+    private static void arrayOfTen() {
         int[] tenIntegers = new int[10];
 
         Random random = new Random();
