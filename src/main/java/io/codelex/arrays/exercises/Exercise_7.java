@@ -3,6 +3,7 @@ package io.codelex.arrays.exercises;
 import java.util.Scanner;
 
 public class Exercise_7 {
+
     public static void main(String[] args) {
         ticTacToe();
     }
@@ -46,10 +47,8 @@ public class Exercise_7 {
                 }
             }
 
-            if (checkWinnerHorizontally(gameBoardArray) ||
-                    checkWinnerDiagonally(gameBoardArray) ||
-                    checkWinnerVertically(gameBoardArray)) {
-                isWinner = true;
+            isWinner = checkIfIsWinner(gameBoardArray);
+            if (isWinner) {
                 if (isFirstPlayer) {
                     System.out.println("Player one wins");
                 } else {
@@ -85,6 +84,12 @@ public class Exercise_7 {
                 gameBoardArray[i][j] = '-';
             }
         }
+    }
+
+    private static boolean checkIfIsWinner(char[][] gameBoardArray) {
+        return checkWinnerHorizontally(gameBoardArray)
+                || checkWinnerDiagonally(gameBoardArray)
+                || checkWinnerVertically(gameBoardArray);
     }
 
     private static boolean checkWinnerHorizontally(char[][] gameBoardArray) {
