@@ -21,33 +21,25 @@ public class Exercise1 {
                 "C Programming",
                 "C++"
         };
-        
+
         System.out.print("Original numeric array : ");
-        for (int i : myArray1) {
-            System.out.print(i + " ");
-        }
+        System.out.println(Arrays.toString(myArray1));
         System.out.println();
 
         //Sort array
         System.out.print("Sorted numeric array : ");
         Arrays.sort(myArray1);
-        for (int i : myArray1) {
-            System.out.print(i + " ");
-        }
+        System.out.println(Arrays.toString(myArray1));
         System.out.println();
 
         System.out.print("Original string array : ");
-        for (String i : myArray2) {
-            System.out.print(i + " ");
-        }
+        System.out.println(Arrays.toString(myArray2));
         System.out.println();
 
         //Sort array
         System.out.print("Sorted string array : ");
         Arrays.sort(myArray2);
-        for (String i : myArray2) {
-            System.out.print(i + " ");
-        }
+        System.out.println(Arrays.toString(myArray2));
 
     }
 }

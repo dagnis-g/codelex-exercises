@@ -10,15 +10,12 @@ public class Exercise_7 {
     private static void ticTacToe() {
         Scanner scan = new Scanner(System.in);
         char[][] gameBoardArray = new char[3][3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                gameBoardArray[i][j] = '-';
-            }
-        }
+        populateBoard(gameBoardArray);
+
         String gameBoardString = printBoard(gameBoardArray);
         System.out.println(gameBoardString);
 
-        char xOrO = 'X';
+        char xOrO;
         boolean isFirstPlayer = true;
         boolean isWinner = false;
 
@@ -32,31 +29,26 @@ public class Exercise_7 {
             }
 
             while (true) {
-                System.out.println("Enter row(int 0 - 2): ");
-                int row = scan.nextInt();
-                System.out.println("Enter column(int 0 - 2): ");
-                int column = scan.nextInt();
+                try {
+                    System.out.println("Enter row(int 0 - 2): ");
+                    int row = scan.nextInt();
+                    System.out.println("Enter column(int 0 - 2): ");
+                    int column = scan.nextInt();
 
-                if (gameBoardArray[row][column] != '-') {
-                    System.out.println("Pick empty row and column");
-                } else {
-                    gameBoardArray[row][column] = xOrO;
-                    break;
+                    if (gameBoardArray[row][column] != '-') {
+                        System.out.println("Pick empty row and column");
+                    } else {
+                        gameBoardArray[row][column] = xOrO;
+                        break;
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Enter correct numbers (0-2)");
                 }
             }
 
-            if (
-                //horizontali
-                            ((gameBoardArray[0][0] == 'X' || gameBoardArray[0][0] == 'O') && gameBoardArray[0][0] == gameBoardArray[0][1] && gameBoardArray[0][1] == gameBoardArray[0][2]) ||
-                            ((gameBoardArray[1][0] == 'X' || gameBoardArray[1][0] == 'O') && gameBoardArray[1][0] == gameBoardArray[1][1] && gameBoardArray[1][1] == gameBoardArray[1][2]) ||
-                            ((gameBoardArray[2][0] == 'X' || gameBoardArray[2][0] == 'O') && gameBoardArray[2][0] == gameBoardArray[2][1] && gameBoardArray[2][1] == gameBoardArray[2][2]) ||
-                            //diognale
-                            ((gameBoardArray[0][0] == 'X' || gameBoardArray[0][0] == 'O') && gameBoardArray[0][0] == gameBoardArray[1][1] && gameBoardArray[1][1] == gameBoardArray[2][2]) ||
-                            ((gameBoardArray[2][2] == 'X' || gameBoardArray[2][2] == 'O') && gameBoardArray[2][2] == gameBoardArray[1][1] && gameBoardArray[1][1] == gameBoardArray[0][2]) ||
-                            //vertikali
-                            ((gameBoardArray[2][2] == 'X' || gameBoardArray[2][2] == 'O') && gameBoardArray[0][0] == gameBoardArray[1][0] && gameBoardArray[1][0] == gameBoardArray[2][0]) ||
-                            ((gameBoardArray[0][1] == 'X' || gameBoardArray[0][1] == 'O') && gameBoardArray[0][1] == gameBoardArray[1][1] && gameBoardArray[1][1] == gameBoardArray[2][1]) ||
-                            ((gameBoardArray[0][2] == 'X' || gameBoardArray[0][2] == 'O') && gameBoardArray[0][2] == gameBoardArray[1][2] && gameBoardArray[1][2] == gameBoardArray[2][2])) {
+            if (checkWinnerHorizontally(gameBoardArray) ||
+                    checkWinnerDiagonally(gameBoardArray) ||
+                    checkWinnerVertically(gameBoardArray)) {
                 isWinner = true;
                 if (isFirstPlayer) {
                     System.out.println("Player one wins");
@@ -85,6 +77,31 @@ public class Exercise_7 {
             gameBoardString.append("\n");
         }
         return gameBoardString.toString();
+    }
+
+    private static void populateBoard(char[][] gameBoardArray) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                gameBoardArray[i][j] = '-';
+            }
+        }
+    }
+
+    private static boolean checkWinnerHorizontally(char[][] gameBoardArray) {
+        return ((gameBoardArray[0][0] == 'X' || gameBoardArray[0][0] == 'O') && gameBoardArray[0][0] == gameBoardArray[0][1] && gameBoardArray[0][1] == gameBoardArray[0][2]) ||
+                ((gameBoardArray[1][0] == 'X' || gameBoardArray[1][0] == 'O') && gameBoardArray[1][0] == gameBoardArray[1][1] && gameBoardArray[1][1] == gameBoardArray[1][2]) ||
+                ((gameBoardArray[2][0] == 'X' || gameBoardArray[2][0] == 'O') && gameBoardArray[2][0] == gameBoardArray[2][1] && gameBoardArray[2][1] == gameBoardArray[2][2]);
+    }
+
+    private static boolean checkWinnerDiagonally(char[][] gameBoardArray) {
+        return ((gameBoardArray[0][0] == 'X' || gameBoardArray[0][0] == 'O') && gameBoardArray[0][0] == gameBoardArray[1][1] && gameBoardArray[1][1] == gameBoardArray[2][2]) ||
+                ((gameBoardArray[2][2] == 'X' || gameBoardArray[2][2] == 'O') && gameBoardArray[2][2] == gameBoardArray[1][1] && gameBoardArray[1][1] == gameBoardArray[0][2]);
+    }
+
+    private static boolean checkWinnerVertically(char[][] gameBoardArray) {
+        return ((gameBoardArray[2][2] == 'X' || gameBoardArray[2][2] == 'O') && gameBoardArray[0][0] == gameBoardArray[1][0] && gameBoardArray[1][0] == gameBoardArray[2][0]) ||
+                ((gameBoardArray[0][1] == 'X' || gameBoardArray[0][1] == 'O') && gameBoardArray[0][1] == gameBoardArray[1][1] && gameBoardArray[1][1] == gameBoardArray[2][1]) ||
+                ((gameBoardArray[0][2] == 'X' || gameBoardArray[0][2] == 'O') && gameBoardArray[0][2] == gameBoardArray[1][2] && gameBoardArray[1][2] == gameBoardArray[2][2]);
     }
 
 }
