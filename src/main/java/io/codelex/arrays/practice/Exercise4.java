@@ -16,11 +16,15 @@ public class Exercise4 {
 
         // fixme - check if contains number 1245
         int num = 1245;
-        if (Arrays.stream(myArray).anyMatch(i -> i == num)) {
+        if (checkIfArrayContainsNum(myArray, num)) {
             System.out.println("Contains number: " + num);
         } else {
             System.out.println("Doesn't contain number: " + num);
         }
 
+    }
+
+    private static boolean checkIfArrayContainsNum(int[] array, int num) {
+        return Arrays.stream(array).anyMatch(i -> i == num);
     }
 }

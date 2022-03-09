@@ -5,6 +5,7 @@ import java.util.*;
 public class Exercise_8 {
     public static void main(String[] args) {
         hangman();
+        playAgainOrNo();
     }
 
     private static void hangman() {
@@ -19,46 +20,68 @@ public class Exercise_8 {
         Arrays.fill(wordWhileGuess, "_");
 
         for (int i = 0; i < chosenWord.length * 2; i++) {
+            System.out.println();
             System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 
-            for (String item : wordWhileGuess) {
-                System.out.print(item + " ");
-            }
-            System.out.println();
+            printWordThatIsBeingGuessed(wordWhileGuess);
+
             System.out.print("Guess letter: ");
             String letterGuess = scan.nextLine();
 
-            for (int l = 0; l < chosenWord.length; l++) {
-                if (letterGuess.equals(chosenWord[l])) {
-                    wordWhileGuess[l] = letterGuess;
-                }
-            }
+            updateWordBeignGuessed(chosenWord, letterGuess, wordWhileGuess);
+            checkAndAddMissesIfNeeded(chosenWord, misses, letterGuess);
+            printMisses(misses);
 
-            List<String> temp = Arrays.asList(chosenWord);
-            if (!temp.contains(letterGuess)) {
-                misses.add(letterGuess);
-            }
-
-            System.out.print("Misses: ");
-            for (String miss : misses) {
-                System.out.print(miss + " ");
-            }
-
-            System.out.println();
-            System.out.println("Guess: " + letterGuess);
-            System.out.println();
-
-            if (Arrays.stream(wordWhileGuess).noneMatch(s -> Objects.equals(s, "_"))) {
+            if (isAllLettersGuessedCorrectly(wordWhileGuess)) {
                 System.out.println("YOU GOT IT!");
-                System.out.println("Play \"again\" or \"quit\"? quit");
-                String playAgainOrQuit = scan.nextLine();
-                if (playAgainOrQuit.equalsIgnoreCase("again")) {
-                    hangman();
-                } else if (playAgainOrQuit.equalsIgnoreCase("quit")) {
-                    System.exit(0);
-                }
+                break;
             }
         }
         System.out.println("You hang");
     }
+
+    private static void playAgainOrNo() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Play \"again\" or \"quit\"? quit");
+        String playAgainOrQuit = scan.nextLine();
+        if (playAgainOrQuit.equalsIgnoreCase("again")) {
+            hangman();
+        } else if (playAgainOrQuit.equalsIgnoreCase("quit")) {
+            System.exit(0);
+        }
+    }
+
+    private static boolean isAllLettersGuessedCorrectly(String[] wordWhileGuess) {
+        return Arrays.stream(wordWhileGuess).noneMatch(s -> Objects.equals(s, "_"));
+    }
+
+    private static void updateWordBeignGuessed(String[] chosenWord, String letterGuess, String[] wordWhileGuess) {
+        for (int l = 0; l < chosenWord.length; l++) {
+            if (letterGuess.equals(chosenWord[l])) {
+                wordWhileGuess[l] = letterGuess;
+            }
+        }
+    }
+
+    private static void printWordThatIsBeingGuessed(String[] wordWhileGuess) {
+        for (String item : wordWhileGuess) {
+            System.out.print(item + " ");
+        }
+        System.out.println();
+    }
+
+    private static void printMisses(ArrayList<String> misses) {
+        System.out.print("Misses: ");
+        for (String miss : misses) {
+            System.out.print(miss + " ");
+        }
+    }
+
+    private static void checkAndAddMissesIfNeeded(String[] chosenWord, ArrayList<String> misses, String letterGuess) {
+        List<String> temp = Arrays.asList(chosenWord);
+        if (!temp.contains(letterGuess)) {
+            misses.add(letterGuess);
+        }
+    }
+
 }

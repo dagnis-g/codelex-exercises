@@ -23,7 +23,9 @@ public class Exercise2 {
         for (int i = minNumber; i <= maxNumber; i++) {
             myArray.add(i);
         }
-        int sum = myArray.stream().mapToInt(i->i).sum();
+        int sum = myArray.stream()
+                .mapToInt(i -> i)
+                .sum();
 
         System.out.println("The sum is " + sum);
     }

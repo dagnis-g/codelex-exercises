@@ -23,16 +23,12 @@ public class Exercise_6 {
         tenIntegers[tenIntegers.length - 1] = -7;
 
         System.out.print("Array tenIntegers:       ");
-        for (int i : tenIntegers) {
-            System.out.print(i + " ");
-        }
-
+        System.out.println(Arrays.toString(tenIntegers));
         System.out.println();
 
         System.out.print("Array copyOfTenIntegers: ");
-        for (int i : copyOfTenIntegers) {
-            System.out.print(i + " ");
-        }
+        System.out.println(Arrays.toString(copyOfTenIntegers));
+        
     }
 
 }
