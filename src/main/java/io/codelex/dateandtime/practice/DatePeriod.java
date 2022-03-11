@@ -7,27 +7,26 @@ import java.util.List;
 
 public class DatePeriod {
     public static void main(String[] args) {
-//        LocalDate firstStart = LocalDate.of(2022, 1, 1);
-//        LocalDate firstEnd = LocalDate.of(2022, 1, 15);
-//        DatePeriod firstPeriod = new DatePeriod(firstStart, firstEnd);
-//
-//        LocalDate secondStart = LocalDate.of(2022, 1, 10);
-//        LocalDate secondEnd = LocalDate.of(2022, 1, 25);
-//        DatePeriod secondPeriod = new DatePeriod(secondStart, secondEnd);
-
         LocalDate firstStart = LocalDate.of(2022, 1, 1);
         LocalDate firstEnd = LocalDate.of(2022, 1, 15);
         DatePeriod firstPeriod = new DatePeriod(firstStart, firstEnd);
 
-        LocalDate secondStart = LocalDate.of(2023, 1, 10);
-        LocalDate secondEnd = LocalDate.of(2023, 1, 25);
+        LocalDate secondStart = LocalDate.of(2022, 1, 10);
+        LocalDate secondEnd = LocalDate.of(2022, 1, 25);
         DatePeriod secondPeriod = new DatePeriod(secondStart, secondEnd);
 
-        ////Vai šis ir cheating?
-        try {
+//        LocalDate firstStart = LocalDate.of(2022, 1, 1);
+//        LocalDate firstEnd = LocalDate.of(2022, 1, 15);
+//        DatePeriod firstPeriod = new DatePeriod(firstStart, firstEnd);
+//
+//        LocalDate secondStart = LocalDate.of(2023, 1, 10);
+//        LocalDate secondEnd = LocalDate.of(2023, 1, 25);
+//        DatePeriod secondPeriod = new DatePeriod(secondStart, secondEnd);
+
+        if (firstPeriod.checkIfOverlap(secondPeriod)) {
             DatePeriod overlap = firstPeriod.intersection(secondPeriod);
             System.out.println(overlap.getDatesInPeriod());
-        } catch (Exception e) {
+        } else {
             System.out.println("No overlapping dates");
         }
 
@@ -68,6 +67,10 @@ public class DatePeriod {
             }
         }
         return new DatePeriod(overlapDates.get(0), overlapDates.get(overlapDates.size() - 1));
+    }
+
+    public boolean checkIfOverlap(DatePeriod datePeriod2) {
+        return !(getEnd().isBefore(datePeriod2.getStart()) || datePeriod2.getEnd().isBefore(getStart()));
     }
 
 }
