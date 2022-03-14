@@ -7,7 +7,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
@@ -25,6 +29,19 @@ public class Main {
 //
 //        JSONObject json = new JSONObject(IOUtils.toString(new URL(fullURL), StandardCharsets.UTF_8));
 //        System.out.println("Origin of IP address is " + json.get("country"));
+
+        ///////////////////////////////////////////////////////////////////////
+//        HttpClient client = HttpClient.newHttpClient();
+//        HttpRequest request = HttpRequest.newBuilder()
+//                .uri(URI.create("http://ip-api.com/json/24.48.0.1"))
+//                .build();
+//
+//        String urlString = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+//                .thenApply(HttpResponse::body)
+//                .join();
+//        JSONObject ipJson = new JSONObject(urlString);
+//        System.out.println(ipJson.get("country"));
+        ////////////////////////////////////////////////////////////////////////
 
         Scanner scan = new Scanner(System.in);
 
