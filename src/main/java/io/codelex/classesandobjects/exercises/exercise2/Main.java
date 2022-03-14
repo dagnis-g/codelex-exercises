@@ -18,7 +18,7 @@ public class Main {
         System.out.print("How many liters you filled at the pump: ");
         liters = scan.nextDouble();
 
-        car.fillUp((int) endKilometers, liters);
+        car.fillUp(endKilometers, liters);
 
         System.out.println("Car one kilometers per liter are " + car.calculateConsumption());
         System.out.println("Is car gashog? " + car.gasHog());
