@@ -27,7 +27,7 @@ public class Car {
         return calculateConsumption() < 5;
     }
 
-    public void fillUp(int mileage, double liters) {
+    public void fillUp(double mileage, double liters) {
         this.endKilometers = mileage;
         this.liters = liters;
     }

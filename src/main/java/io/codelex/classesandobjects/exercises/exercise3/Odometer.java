@@ -1,6 +1,7 @@
 package io.codelex.classesandobjects.exercises.exercise3;
 
 public class Odometer {
+    private final int MAX_MILEAGE = 999999;
 
     private int currentMileage;
     private int drivenMileage;
@@ -14,7 +15,7 @@ public class Odometer {
     }
 
     public void increaseMileage() {
-        if (this.currentMileage < 999999) {
+        if (this.currentMileage < MAX_MILEAGE) {
             this.currentMileage++;
         } else {
             this.currentMileage = 0;

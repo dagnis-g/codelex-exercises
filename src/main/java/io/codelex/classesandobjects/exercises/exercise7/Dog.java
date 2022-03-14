@@ -1,27 +1,25 @@
 package io.codelex.classesandobjects.exercises.exercise7;
 
-import java.util.Objects;
-
 public class Dog {
-    private String name;
-    private String sex;
+    private final String name;
+    private final Gender sex;
     private Dog father;
     private Dog mother;
 
-    public Dog(String name, String sex, Dog mother, Dog father) {
+    public Dog(String name, Gender sex, Dog mother, Dog father) {
         this.name = name;
         this.sex = sex;
         this.father = father;
         this.mother = mother;
     }
 
-    public Dog(String name, String sex, Dog mother) {
+    public Dog(String name, Gender sex, Dog mother) {
         this.name = name;
         this.sex = sex;
         this.mother = mother;
     }
 
-    public Dog(String name, String sex) {
+    public Dog(String name, Gender sex) {
         this.name = name;
         this.sex = sex;
     }
@@ -35,10 +33,18 @@ public class Dog {
     }
 
     public String getFatherName() {
-        return father.name;
+        if (father != null) {
+            return father.name;
+        } else {
+            return "Unknown";
+        }
     }
 
     public boolean hasSameMother(Dog dog) {
-        return this.mother.equals(dog.mother);
+        if (this.mother != null && dog.mother != null) {
+            return this.mother.equals(dog.mother);
+        } else {
+            return false;
+        }
     }
 }
