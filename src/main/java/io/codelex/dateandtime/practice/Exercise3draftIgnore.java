@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Exercise_3_draftIgnore {
+public class Exercise3draftIgnore {
     public static void main(String[] args) {
 
         LocalDate firstStart = inputDateToLocalDate("01-01-2022");
