@@ -41,11 +41,9 @@ public class ScissorPaperStone {
             System.out.println("My turn: " + myTurn);
             System.out.println("PC turn: " + pcTurn);
 
-            assert myTurn != null;
             String winner = getWinner(myTurn, pcTurn);
             System.out.println(winner);
 
-            assert winner != null;
             wins += countWins(winner);
             losses += countLosses(winner);
 
@@ -55,7 +53,7 @@ public class ScissorPaperStone {
 
     }
 
-    public static int countWins(String winner) {
+    private static int countWins(String winner) {
         if (winner.equals("You Won!!")) {
             return 1;
         } else {
@@ -63,7 +61,7 @@ public class ScissorPaperStone {
         }
     }
 
-    public static int countLosses(String winner) {
+    private static int countLosses(String winner) {
         if (winner.equals("You Lose!!")) {
             return 1;
         } else {
@@ -71,14 +69,14 @@ public class ScissorPaperStone {
         }
     }
 
-    public static boolean checkIfValidInput(String myTurnInput) {
+    private static boolean checkIfValidInput(String myTurnInput) {
         return myTurnInput.equals("s")
                 || myTurnInput.equals("p")
                 || myTurnInput.equals("t")
                 || myTurnInput.equals("q");
     }
 
-    public static SpsEnum getPcTurn() {
+    private static SpsEnum getPcTurn() {
         Random random = new Random();
         int index = random.nextInt(3);
         String[] turns = {"s", "p", "t"};
@@ -86,7 +84,7 @@ public class ScissorPaperStone {
         return SpsEnum.getTurnEnumFromInput(turns[index]);
     }
 
-    public static String getWinner(SpsEnum myTurn, SpsEnum pcTurn) {
+    private static String getWinner(SpsEnum myTurn, SpsEnum pcTurn) {
         String won = "You Won!!";
         String lose = "You Lose!!";
         if (myTurn.equals(pcTurn)) {
