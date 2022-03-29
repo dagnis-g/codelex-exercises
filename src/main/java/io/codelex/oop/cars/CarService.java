@@ -107,86 +107,76 @@ public class CarService {
         return manfacturerCars;
     }
 
+    public Set<Manufacturer> getAllManufacturers() {
+        return this.carList.stream()
+                .map(Car::getManufacturerList)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toSet());
+    }
+
     public List<Car> getByYearAndManufacturer(int year, String parameter) {
-
-        Set<Manufacturer> allManufacturers = new HashSet<>();
-
-        for (Car car : carList) {
-            allManufacturers.addAll(car.getManufacturerList());
-        }
-
-        List<Car> byManufacturerAndYear = new ArrayList<>();
 
         switch (parameter) {
             case "<" -> {
-                for (Manufacturer i : allManufacturers) {
-                    if (i.getYearOfEstablishment() < year) {
-                        for (Car car : carList) {
-                            if (car.getManufacturerList().contains(i)) {
-                                byManufacturerAndYear.add(car);
-                            }
-                        }
-                    }
-                }
+                return getAllManufacturers()
+                        .stream()
+                        .filter(i -> i.getYearOfEstablishment() < year)
+                        .map(this::getCarByManufacturer)
+                        .flatMap(List::stream)
+                        .distinct()
+                        .toList();
             }
+
             case ">" -> {
-                for (Manufacturer i : allManufacturers) {
-                    if (i.getYearOfEstablishment() > year) {
-                        for (Car car : carList) {
-                            if (car.getManufacturerList().contains(i)) {
-                                byManufacturerAndYear.add(car);
-                            }
-                        }
-                    }
-                }
+                return getAllManufacturers()
+                        .stream()
+                        .filter(i -> i.getYearOfEstablishment() > year)
+                        .map(this::getCarByManufacturer)
+                        .flatMap(List::stream)
+                        .distinct()
+                        .toList();
             }
+
             case "<=" -> {
-                for (Manufacturer i : allManufacturers) {
-                    if (i.getYearOfEstablishment() <= year) {
-                        for (Car car : carList) {
-                            if (car.getManufacturerList().contains(i)) {
-                                byManufacturerAndYear.add(car);
-                            }
-                        }
-                    }
-                }
+                return getAllManufacturers()
+                        .stream()
+                        .filter(i -> i.getYearOfEstablishment() <= year)
+                        .map(this::getCarByManufacturer)
+                        .flatMap(List::stream)
+                        .distinct()
+                        .toList();
             }
+
             case ">=" -> {
-                for (Manufacturer i : allManufacturers) {
-                    if (i.getYearOfEstablishment() >= year) {
-                        for (Car car : carList) {
-                            if (car.getManufacturerList().contains(i)) {
-                                byManufacturerAndYear.add(car);
-                            }
-                        }
-                    }
-                }
+                return getAllManufacturers()
+                        .stream()
+                        .filter(i -> i.getYearOfEstablishment() >= year)
+                        .map(this::getCarByManufacturer)
+                        .flatMap(List::stream)
+                        .distinct()
+                        .toList();
             }
+
             case "=" -> {
-                for (Manufacturer i : allManufacturers) {
-                    if (i.getYearOfEstablishment() == year) {
-                        for (Car car : carList) {
-                            if (car.getManufacturerList().contains(i)) {
-                                byManufacturerAndYear.add(car);
-                            }
-                        }
-                    }
-                }
+                return getAllManufacturers()
+                        .stream()
+                        .filter(i -> i.getYearOfEstablishment() == year)
+                        .map(this::getCarByManufacturer)
+                        .flatMap(List::stream)
+                        .distinct()
+                        .toList();
             }
+
             case "!=" -> {
-                for (Manufacturer i : allManufacturers) {
-                    if (i.getYearOfEstablishment() != year) {
-                        for (Car car : carList) {
-                            if (car.getManufacturerList().contains(i)) {
-                                byManufacturerAndYear.add(car);
-                            }
-                        }
-                    }
-                }
+                return getAllManufacturers()
+                        .stream()
+                        .filter(i -> i.getYearOfEstablishment() != year)
+                        .map(this::getCarByManufacturer)
+                        .flatMap(List::stream)
+                        .distinct()
+                        .toList();
             }
         }
-
-        return byManufacturerAndYear.stream().distinct().collect(Collectors.toList());
+        return null;
     }
-
 }
