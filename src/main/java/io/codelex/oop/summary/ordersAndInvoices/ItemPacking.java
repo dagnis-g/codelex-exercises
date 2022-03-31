@@ -3,15 +3,9 @@ package io.codelex.oop.summary.ordersAndInvoices;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public abstract class AbstractItem implements Item {
-
-    private final String name;
-    private final BigDecimal price;
-
-    public AbstractItem(String name, BigDecimal price) {
-        this.name = name;
-        this.price = price;
-    }
+public class ItemPacking implements Service {
+    static final String name = "Item packing";
+    static final BigDecimal price = new BigDecimal(5);
 
     @Override
     public String getName() {
@@ -25,7 +19,7 @@ public abstract class AbstractItem implements Item {
 
     @Override
     public String getFullInfo() {
-        return name + ", " + price + " EUR,";
+        return String.format("%-45s%s",
+                (getName() + ", " + getPrice() + " EUR"), "=");
     }
-
 }
