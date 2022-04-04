@@ -16,7 +16,7 @@ public class Basket<T> {
     }
 
     public void addToBasket(T item) throws BasketFullException {
-        if (basket.size() >= 10) {
+        if (itemCount >= 10) {
             throw new BasketFullException();
         }
         basket.add(item);
@@ -24,7 +24,7 @@ public class Basket<T> {
     }
 
     public void removeFromBasket(T item) throws BasketEmptyException {
-        if (basket.size() == 0) {
+        if (itemCount == 0) {
             throw new BasketEmptyException();
         }
         basket.remove(item);
