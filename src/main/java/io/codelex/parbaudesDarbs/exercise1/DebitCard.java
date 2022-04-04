@@ -9,11 +9,10 @@ public class DebitCard extends Card {
     }
 
     @Override
-    void addMoney(BigDecimal amount) throws NotEnoughFundsException {
+    void addMoney(BigDecimal amount) {
         balance = balance.add(amount);
         if (balance.compareTo(new BigDecimal(10000)) == 1) {
-            balance = balance.subtract(amount);
-            throw new NotEnoughFundsException("Warning: Too much money");
+            System.out.println("Warning: Too much money");
         }
     }
 
@@ -22,9 +21,9 @@ public class DebitCard extends Card {
         balance = balance.subtract(amount);
         if (balance.compareTo(new BigDecimal(0)) == -1) {
             balance = balance.add(amount);
-            throw new NotEnoughFundsException("Warning: Low funds");
+            throw new NotEnoughFundsException("Not enough money to withdraw");
         }
 
     }
-    
+
 }

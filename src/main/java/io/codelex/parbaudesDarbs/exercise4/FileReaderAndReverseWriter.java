@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileReaderAndReverseWriter {
+    public FileReaderAndReverseWriter() throws FileNotFoundException {
+    }
+
     public String readText(String fileName) throws IOException, URISyntaxException {
         Path path = Paths.get(Objects.requireNonNull(FileReaderAndReverseWriter.class.getClassLoader()
                 .getResource(fileName)).toURI());
@@ -20,17 +23,34 @@ public class FileReaderAndReverseWriter {
         return data;
     }
 
-    public void writeToTextFile(String filePath, String textToWrite) throws IOException {
-        Path path = Paths.get(filePath);
-        Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(String.valueOf(path)), StandardCharsets.UTF_8));
+//    public void writeToTextFile(String filePath, String textToWrite) throws IOException {
+//        Path path = Paths.get(filePath);
+//        Writer writer = new BufferedWriter(new OutputStreamWriter(
+//                new FileOutputStream(String.valueOf(path)), StandardCharsets.UTF_8));
+//
+//        StringBuilder builder = new StringBuilder(textToWrite);
+//        String reversedText = builder.reverse().toString();
+//        writer.write(reversedText);
+//
+//        writer.flush();
+//        writer.close();
+//    }
 
-        StringBuilder builder = new StringBuilder(textToWrite);
+    public void readReverseWrite(String fileName) throws URISyntaxException, IOException {
+        String data = readText(fileName);
+
+        String[] fileNameSplit = fileName.split("\\.");
+        String fileNameReversed = new StringBuilder(fileNameSplit[0]).reverse()
+                + "." + fileNameSplit[1];
+
+        StringBuilder builder = new StringBuilder(data);
         String reversedText = builder.reverse().toString();
 
-        writer.write(reversedText);
+        BufferedWriter out = new BufferedWriter(new FileWriter(
+                "src/main/resources/" + fileNameReversed));
+        out.write(reversedText);
+        out.close();
 
-        writer.flush();
-        writer.close();
     }
+
 }

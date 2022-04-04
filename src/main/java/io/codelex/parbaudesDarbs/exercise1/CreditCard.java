@@ -14,11 +14,10 @@ public class CreditCard extends Card {
     }
 
     @Override
-    void withdraw(BigDecimal amount) throws NotEnoughFundsException {
+    void withdraw(BigDecimal amount) {
         balance = balance.subtract(amount);
         if (balance.compareTo(new BigDecimal(100)) == -1) {
-            balance = balance.add(amount);
-            throw new NotEnoughFundsException("Warning: Low funds");
+            System.out.println("Warning: Low funds");
         }
     }
 }
