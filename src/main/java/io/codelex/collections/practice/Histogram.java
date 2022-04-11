@@ -33,25 +33,25 @@ public class Histogram {
         for (String score : scoreList) {
             int num = Integer.parseInt(score);
 
-            if (num >= 0 && num <= 9) {
+            if (num < 10) {
                 result.put("00-09", result.get("00-09") + "*");
-            } else if (num >= 10 && num <= 19) {
+            } else if (num < 20) {
                 result.put("10-19", result.get("10-19") + "*");
-            } else if (num >= 20 && num <= 29) {
+            } else if (num < 30) {
                 result.put("20-29", result.get("20-29") + "*");
-            } else if (num >= 30 && num <= 39) {
+            } else if (num < 40) {
                 result.put("30-39", result.get("30-39") + "*");
-            } else if (num >= 40 && num <= 49) {
+            } else if (num < 50) {
                 result.put("40-49", result.get("40-49") + "*");
-            } else if (num >= 50 && num <= 59) {
+            } else if (num < 60) {
                 result.put("50-59", result.get("50-59") + "*");
-            } else if (num >= 60 && num <= 69) {
+            } else if (num < 70) {
                 result.put("60-69", result.get("60-69") + "*");
-            } else if (num >= 70 && num <= 79) {
+            } else if (num < 80) {
                 result.put("70-79", result.get("70-79") + "*");
-            } else if (num >= 80 && num <= 89) {
+            } else if (num < 90) {
                 result.put("80-89", result.get("80-89") + "*");
-            } else if (num >= 90 && num <= 99) {
+            } else if (num < 100) {
                 result.put("90-99", result.get("90-99") + "*");
             } else if (num == 100) {
                 result.put("100", result.get("100") + "*");
