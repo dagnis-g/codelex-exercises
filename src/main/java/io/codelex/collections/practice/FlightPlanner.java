@@ -20,68 +20,13 @@ public class FlightPlanner {
 
         HashMap<String, List<String>> flightData = getDataFromListOfTextFile(lines);
 
-        String userChoice;
-        while (true) {
-            System.out.println("""
-                    What would you like to do?
-                    To display cities press 1
-                    To exit program press #""");
+        firstMenu(flightData, scan);
 
-            userChoice = scan.nextLine();
-            if (userChoice.equals("1")) {
-                displayAllCitiesAndDestinations(flightData);
-                break;
-            } else if (userChoice.equals("#")) {
-                System.out.println("Bye!");
-                System.exit(0);
-            } else {
-                System.out.println("Unknown command, try again..");
-            }
-        }
+        List<String> chosenCities = chooseFirstCity(flightData, scan);
+        String startCity = chosenCities.get(0);
 
-        List<String> chosenCities = new ArrayList<>();
-        String startCity;
+        chooseNextCities(flightData, scan, chosenCities, startCity);
 
-        while (true) {
-            System.out.println("To select a city from which you would like to start press 1\n" +
-                    "To exit press #");
-            userChoice = scan.nextLine();
-            if (userChoice.equals("1")) {
-                System.out.println("From which city you would like to start travel?");
-                startCity = scan.nextLine();
-                if (!flightData.containsKey(startCity)) {
-                    System.out.println("No such city...");
-                    continue;
-                }
-                chosenCities.add(startCity);
-                System.out.println("Destinations from " + startCity + " : ");
-                flightData.get(startCity).forEach(System.out::println);
-                break;
-            } else if (userChoice.equals("#")) {
-                System.out.println("Bye!");
-                System.exit(0);
-            } else {
-                System.out.println("Unknown command, try again..");
-            }
-        }
-
-        while (true) {
-            System.out.println("Choose your next destination: ");
-            String nextCity = scan.nextLine();
-            if (!flightData.containsKey(nextCity)) {
-                System.out.println("No such destination, try again..");
-                continue;
-            }
-            chosenCities.add(nextCity);
-            if (nextCity.equals(startCity)) {
-                System.out.print("All the cities in your travel: ");
-                for (String city : chosenCities) {
-                    System.out.print(city + " ");
-                }
-                break;
-            }
-            flightData.get(nextCity).forEach(System.out::println);
-        }
     }
 
     private static void displayAllCitiesAndDestinations(HashMap<String, List<String>> flightData) {
@@ -103,6 +48,73 @@ public class FlightPlanner {
         }
 
         return flightData;
+    }
+
+    private static void firstMenu(HashMap<String, List<String>> flightData, Scanner scan) {
+        while (true) {
+            System.out.println("""
+                    What would you like to do?
+                    To display cities press 1
+                    To exit program press #""");
+
+            String userChoice = scan.nextLine();
+            if (userChoice.equals("1")) {
+                displayAllCitiesAndDestinations(flightData);
+                break;
+            } else if (userChoice.equals("#")) {
+                System.out.println("Bye!");
+                System.exit(0);
+            } else {
+                System.out.println("Unknown command, try again..");
+            }
+        }
+    }
+
+    private static List<String> chooseFirstCity(HashMap<String, List<String>> flightData, Scanner scan) {
+        List<String> chosenCities = new ArrayList<>();
+        while (true) {
+            System.out.println("To select a city from which you would like to start press 1\n" +
+                    "To exit press #");
+            String userChoice = scan.nextLine();
+            if (userChoice.equals("1")) {
+                System.out.println("From which city you would like to start travel?");
+                String startCity = scan.nextLine();
+                if (!flightData.containsKey(startCity)) {
+                    System.out.println("No such city...");
+                    continue;
+                }
+                chosenCities.add(startCity);
+                System.out.println("Destinations from " + startCity + " : ");
+                flightData.get(startCity).forEach(System.out::println);
+                break;
+            } else if (userChoice.equals("#")) {
+                System.out.println("Bye!");
+                System.exit(0);
+            } else {
+                System.out.println("Unknown command, try again..");
+            }
+        }
+        return chosenCities;
+    }
+
+    private static void chooseNextCities(HashMap<String, List<String>> flightData, Scanner scan, List<String> chosenCities, String startCity) {
+        while (true) {
+            System.out.println("Choose your next destination: ");
+            String nextCity = scan.nextLine();
+            if (!flightData.containsKey(nextCity)) {
+                System.out.println("No such destination, try again..");
+                continue;
+            }
+            chosenCities.add(nextCity);
+            if (nextCity.equals(startCity)) {
+                System.out.print("All the cities in your travel: ");
+                for (String city : chosenCities) {
+                    System.out.print(city + " ");
+                }
+                break;
+            }
+            flightData.get(nextCity).forEach(System.out::println);
+        }
     }
 
 }

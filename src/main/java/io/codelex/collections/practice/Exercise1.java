@@ -23,7 +23,7 @@ public class Exercise1 {
 
         //todo - replace array with a HashSet and print out the results
 
-        HashSet<String> arrayToSet = (HashSet<String>) Arrays.stream(array).collect(Collectors.toSet());
+        Set<String> arrayToSet = Arrays.stream(array).collect(Collectors.toSet());
         System.out.println(arrayToSet);
 
         //todo - replace array with a HashMap (use brand as key and origination as value) an print out the results
