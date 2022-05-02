@@ -1,7 +1,7 @@
 package io.codelex.polymorphism.practice.exercise3;
 
 public class Employee extends Person {
-    String jobTitle;
+    private String jobTitle;
 
     public Employee(String firstName, String lastName, String adress, int id, String jobTitle) {
         super(firstName, lastName, adress, id);

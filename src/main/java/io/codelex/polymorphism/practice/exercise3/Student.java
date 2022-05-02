@@ -1,7 +1,7 @@
 package io.codelex.polymorphism.practice.exercise3;
 
 public class Student extends Person {
-    double gpa;
+    private double gpa;
 
     public Student(String firstName, String lastName, String adress, int id, double gpa) {
         super(firstName, lastName, adress, id);
