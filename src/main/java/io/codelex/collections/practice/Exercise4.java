@@ -3,7 +3,7 @@ package io.codelex.collections.practice;
 import java.util.HashSet;
 import java.util.Scanner;
 
-public class Exercise_4 {
+public class Exercise4 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         HashSet<String> names = new HashSet<>();
