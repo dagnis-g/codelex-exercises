@@ -1,10 +1,10 @@
 package io.codelex.polymorphism.practice.exercise3;
 
 public class Person {
-    String firstName;
-    String lastName;
-    String address;
-    int id;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private int id;
 
     public Person() {
     }
